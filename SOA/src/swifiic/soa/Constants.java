@@ -12,13 +12,14 @@ public class Constants {
 	public static final String userId_tag ="userId";
 	public static final String EventNotes_tag ="EventNotes";
 	public static final String Details_tag ="Details";
-	public static final String DebitUserId_tag ="Details";
-	public static final String CreditUserId_tag ="Details";
+	public static final String DebitUserId_tag ="DebitUserId";
+	public static final String CreditUserId_tag ="CreditUserdId";
 	public static final String Amount_tag ="Amount";
 	public static final String alias_tag ="alias";
 	public static final String DevId_tag ="DevId";
 	public static final String appId_tag = "appId";
 	public static final String name_tag = "name";
+	public static final String deviceId_tag = "deviceId";
 	
 	public static final String isOperator_tag ="isOperator";
 	public static final String appVer_tag = "appVer";

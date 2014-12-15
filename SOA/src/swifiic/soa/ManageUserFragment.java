@@ -513,7 +513,7 @@ private class RechargeUserTask extends AsyncTask<String,Void,Void>{
           String msg = null; 
     	  if (isDebit) msg = getResources().getString(R.string.DebitSuccess);
     	  else msg = getResources().getString(R.string.CreditSuccess);
-    	  getActivity().runOnUiThread(new ToastThread(msg));
+    	  getActivity().runOnUiThread(new ToastThread(msg+" for "+userId));
     //    Toast.makeText(context.getActivity(),"Response Body => " + responseBody,Toast.LENGTH_LONG).show();
       } else if (responseCode==HttpURLConnection.HTTP_UNAUTHORIZED){
     		 MainActivity act = (MainActivity)getActivity();

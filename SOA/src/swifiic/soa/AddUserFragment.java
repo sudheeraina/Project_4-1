@@ -55,18 +55,7 @@ public class AddUserFragment extends Fragment implements OnClickListener,OnFocus
     
     static final String URL = Constants.URL;
     private static PrintStream o = System.out;
-    private static final String Name = "usrName";
-    private static final String Alias = "alias";
-    private static final String EmailAddress = "usrEmail";
-    private static final String MobileNum= "mobNum";
-    private static final String Address = "address";
-    private static final String ProfilePic = "profilePic";
-    private static final String ImageFile = "imageFile";
-    private static final String IdProofFile = "idProofFile";
-    private static final String AddrProofFile = "addressProofFile";
-    private static final String AddrVerifNotes = "notes";
-    private static final String custDeviceId = "custDeviceId";
-    private static final String UserId = "userKeyID";
+    
     private boolean errorInLogin = false;
     private Integer userId = null;
     // Max size allowed for the profile pics 
@@ -138,7 +127,7 @@ public class AddUserFragment extends Fragment implements OnClickListener,OnFocus
         	populate(b);
         	etMobileNo.setClickable(false);
         	etMobileNo.setFocusable(false);
-        	toast("Disabled swapping..");
+        	//toast("Disabled swapping..");
         	act.disableSwapping();
         }
         else etMobileNo.setOnFocusChangeListener(this);
@@ -332,21 +321,21 @@ private class AddEditUserTask extends AsyncTask<Void, Void,Void> { // <doInBackg
 		        // Add your data
 		        ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(curNameValuePairs);
 		        
-		        nameValuePairs.add(new BasicNameValuePair(Name,name));
-		        nameValuePairs.add(new BasicNameValuePair(Alias,alias));
-		        nameValuePairs.add(new BasicNameValuePair(EmailAddress,email));
-		        nameValuePairs.add(new BasicNameValuePair(MobileNum,mobile));
-		        nameValuePairs.add(new BasicNameValuePair(Address,addr));
-		        nameValuePairs.add(new BasicNameValuePair(ProfilePic,null));
-		        nameValuePairs.add(new BasicNameValuePair(ImageFile,profileStr));
-		        nameValuePairs.add(new BasicNameValuePair(IdProofFile,idProofStr));
-		        nameValuePairs.add(new BasicNameValuePair(AddrProofFile,addrProofStr));
-		        nameValuePairs.add(new BasicNameValuePair(AddrVerifNotes,notes));
-		        nameValuePairs.add(new BasicNameValuePair(custDeviceId,deviceId));
+		        nameValuePairs.add(new BasicNameValuePair(Constants.usrName_tag,name));
+		        nameValuePairs.add(new BasicNameValuePair(Constants.alias_tag,alias));
+		        nameValuePairs.add(new BasicNameValuePair(Constants.usrEmail_tag,email));
+		        nameValuePairs.add(new BasicNameValuePair(Constants.mobNum_tag,mobile));
+		        nameValuePairs.add(new BasicNameValuePair(Constants.address_tag,addr));
+		        nameValuePairs.add(new BasicNameValuePair(Constants.profilePic_tag,null));
+		        nameValuePairs.add(new BasicNameValuePair(Constants.imageFile_tag,profileStr));
+		        nameValuePairs.add(new BasicNameValuePair(Constants.idProofFile_tag,idProofStr));
+		        nameValuePairs.add(new BasicNameValuePair(Constants.addrProofFile_tag,addrProofStr));
+		        nameValuePairs.add(new BasicNameValuePair(Constants.notes_tag,notes));
+		        nameValuePairs.add(new BasicNameValuePair(Constants.custDeviceId_tag,deviceId));
 		        
 		        if (userId!=null) {
-		        	nameValuePairs.add(new BasicNameValuePair(UserId,Integer.toString(userId)));
-		        	nameValuePairs.add(new BasicNameValuePair(Constants.userKeyID_tag,"EditUser"));
+		        	nameValuePairs.add(new BasicNameValuePair(Constants.userKeyID_tag,Integer.toString(userId)));
+		        	nameValuePairs.add(new BasicNameValuePair(Constants.name_tag,"EditUser"));
 			    }
 		        else 
 		        	nameValuePairs.add(new BasicNameValuePair(Constants.name_tag,"AddUser"));
@@ -408,20 +397,20 @@ private class AddEditUserTask extends AsyncTask<Void, Void,Void> { // <doInBackg
 
 // populates the data of the user being edited , from the bundle passed by the edit user event
 void populate(Bundle b){
-	  
-	  etName.setText(b.getString(Name));
-	  etAlias.setText(b.getString(Alias));
-	  etEmail.setText(b.getString(EmailAddress));
-	  etAddr.setText(b.getString(Address));
-	  etMobileNo.setText(b.getString(MobileNum));
-	  etNotes.setText(b.getString(AddrVerifNotes));
-	  etMac.setText(b.getString(custDeviceId));
+	
+	  etName.setText(b.getString(Constants.usrName_tag));
+	  etAlias.setText(b.getString(Constants.alias_tag));
+	  etEmail.setText(b.getString(Constants.usrEmail_tag));
+	  etAddr.setText(b.getString(Constants.address_tag));
+	  etMobileNo.setText(b.getString(Constants.mobNum_tag));
+	  etNotes.setText(b.getString(Constants.notes_tag));
+	  etMac.setText(b.getString(Constants.custDeviceId_tag));
 	  Resources rsc = getActivity().getResources();
 	  Bitmap profile=null,idProof=null,addrProof=null;
-	  String profileStr = b.getString(ImageFile);
-	  String idProofStr = b.getString(IdProofFile);
-	  String addrProofStr = b.getString(AddrProofFile);
-	  userId = Integer.decode(b.getString(UserId));
+	  String profileStr = b.getString(Constants.imageFile_tag);
+	  String idProofStr = b.getString(Constants.idProofFile_tag);
+	  String addrProofStr = b.getString(Constants.addrProofFile_tag);
+	  userId = Integer.decode(b.getString(Constants.userKeyID_tag));
 	  
 	  if (profileStr!=null && !profileStr.equals("")) profile = getBitmap(profileStr);
 	  else   profile =  BitmapFactory.decodeResource(rsc,R.drawable.userimg);

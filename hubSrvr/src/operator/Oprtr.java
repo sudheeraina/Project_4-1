@@ -33,18 +33,18 @@ import org.apache.commons.lang.SerializationUtils;
 public final class Oprtr extends ActionProcessor {
 	private static final long serialVersionUID = 1L;
 	
-	final String clntSessId_tag ="clntSessId";
-	final String secret_tag ="secret";
-	final String Password_tag="Password";
-	final String userId_tag ="userId";
-	final String EventNotes_tag ="EventNotes";
-	final String Details_tag ="Details";
-	final String DebitUserId_tag ="DebitUserId";
-	final String CreditUserId_tag ="CreditUserId";
-	final String Amount_tag ="Amount";
-	final String alias_tag ="alias";
-	final String DevId_tag ="DevId";
-	final String isOperator_tag ="isOperator";
+	static final String clntSessId_tag ="clntSessId";
+	static final String secret_tag ="secret";
+	static final String Password_tag="Password";
+	static final String userId_tag ="userId";
+	static final String EventNotes_tag ="EventNotes";
+	static final String Details_tag ="Details";
+	static final String DebitUserId_tag ="DebitUserId";
+	static final String CreditUserId_tag ="CreditUserdId";
+	static final String Amount_tag ="Amount";
+	static final String alias_tag ="alias";
+	static final String DevId_tag ="DevId";
+	static final String isOperator_tag ="isOperator";
 	static final String userKeyID_tag = "userKeyID";
 	static final String mobNum_tag= "mobNum";
 	static final String usrName_tag = "usrName";
@@ -448,13 +448,6 @@ private boolean validate(String user,String pass,HttpSession session){
 		
 	}
 	
-	/*
-	public static byte[] serialize(Object obj) throws IOException {
-	    ByteArrayOutputStream out = new ByteArrayOutputStream();
-	    ObjectOutputStream os = new ObjectOutputStream(out);
-	    os.writeObject(obj);
-	    return out.toByteArray();
-	} */
 	
 	private void changeCredits(ReqCtx ctx, HttpServletResponse response) throws  IOException {
 		 
@@ -462,6 +455,10 @@ private boolean validate(String user,String pass,HttpSession session){
 		 String event = ctx.getArgVal(Details_tag);
 		 String debitUserId = ctx.getArgVal(DebitUserId_tag);
 		 String creditUserId = ctx.getArgVal(CreditUserId_tag);
+		
+		 o.println(creditUserId+";"+debitUserId+";"+event+";"+eventNotes);
+		// o.println("Req Ctx : "+ctx);
+		 
 		 
 		 int amount = Integer.parseInt(ctx.getArgVal(Amount_tag));  
 		 String timeStamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Timestamp(System.currentTimeMillis())); 

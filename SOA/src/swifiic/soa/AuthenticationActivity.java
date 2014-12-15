@@ -165,12 +165,12 @@ public class AuthenticationActivity extends Activity implements OnClickListener,
     	basicNameValuePairs.add(new BasicNameValuePair(Constants.clntSessId_tag,"somejunkSession"));
     	basicNameValuePairs.add(new BasicNameValuePair(Constants.secret_tag,"secretVal"));
     	basicNameValuePairs.add(new BasicNameValuePair(Constants.version_tag,"0.1"));
-    	basicNameValuePairs.add(new BasicNameValuePair(Constants.custDeviceId_tag,getMacAddress()));
     	basicNameValuePairs.add(new BasicNameValuePair(Constants.appId_tag,"Oprtr"));
     	basicNameValuePairs.add(new BasicNameValuePair(Constants.appVer_tag,"0.1"));
     	basicNameValuePairs.add(new BasicNameValuePair(Constants.pduLogVisibility_tag,"OperatorOnly"));
     	basicNameValuePairs.add(new BasicNameValuePair(Constants.billing_tag,"None"));
-	}
+    	basicNameValuePairs.add(new BasicNameValuePair(Constants.deviceId_tag,getMacAddress()));
+    }
 	
 	String getMacAddress(){
 		WifiManager manager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
